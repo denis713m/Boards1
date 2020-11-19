@@ -1,0 +1,7 @@
+*/node_modules/
+postgres.session.sql
+.idea/
+.vscode/
+backend/node_modules
+*/sandbox/
+*/dist
