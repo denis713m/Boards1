@@ -7,6 +7,7 @@ import Header from '../../components/Header/Header';
 import {getBoardById, boardRename} from '../../redux/actions';
 import RenameBoardForm from '../../components/RenameBoardForm/RenameBoardForm';
 import Spinner from '../../components/Spinner/Spinner';
+import CardsList from '../../components/CardsList/CardsList';
 
 const BoardPage = (props) => {
     useEffect(() => {
@@ -45,34 +46,13 @@ const BoardPage = (props) => {
                         </div>
                     </div>
                     <div className={styles.listsContainer}>
-                    </div> 
+                        <CardsList/>
+                        <CardsList/>
+                    </div>
                 </>
             }
 
-            <div className={styles.listsContainer}>
-                <div className={styles.listContainer}>
-                    <div className={styles.listTitle}>In progress</div>
-                    <div className={styles.cardContainer}>
-                        <div className={styles.card}>In progress</div>
-                        <div className={styles.card}>In progress</div>
-                        <div className={styles.card}>In progress</div>
-                    </div>
-                    <button className={styles.btnAddCard}>Add a card...</button>
 
-                </div>
-                <div className={styles.listContainer}>
-                    <div className={styles.listTitle}>In progress</div>
-                    <div className={styles.cardContainer}>
-                        <div className={styles.card}>In progress</div>
-                        <div className={styles.card}>In progress</div>
-                        <div className={styles.card}>In progress</div>
-                    </div>
-                    <button className={styles.btnAddCard}>Add a card...</button>
-
-                </div>
-
-
-            </div>
             </div>
         </>
     );

@@ -1,14 +1,19 @@
 import * as types from '../actionTypes';
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import {registerRequest, loginRequest, getUserRequest} from '../../api/fetchApi';
 
 
 export function* registrationUser(action) {
     yield put({type: types.REGISTRATION_USER_REQUEST});
     try{
-        yield  registerRequest(action.data.values);
+        const {data} = yield  registerRequest(action.data.values);
         action.data.history.replace('/');
-        yield put({type: types.REGISTRATION_USER_SUCCESS});
+        yield put({type: types.REGISTRATION_USER_SUCCESS, data:{
+            firstName: action.data.values.firstName,
+            userId: data.id,
+            lastName: action.data.values.lastName,
+            displayName: action.data.values.displayName,
+        }});
     }
     catch (e) {
         yield put({type: types.REGISTRATION_USER_ERROR, error: e.response});
@@ -34,8 +39,6 @@ export function* registrationUser(action) {
     try{
         console.log('getUser');
         const {data} = yield  getUserRequest();
-        //action.data.history.replace('/');
-        console.log(data);
         yield put({type: types.REGISTRATION_USER_SUCCESS, data:data});
     }
     catch (e) {

@@ -9,12 +9,10 @@ module.exports.registrationUser = async (req, res, next) =>{
         const user = req.body;
         user.password = req.hashPass;
         tokens = generateTokens.generateTokens(user);
-        await db.User.create({...user, ...tokens});
-        res.send(tokens);
+        const newUser = await db.User.create({...user, ...tokens});
+        res.send({...tokens, id:newUser.id});
     }
     catch (e){
-        console.log('!!!!!');
-        console.log(e.name);
         next(e);
     }
     
@@ -22,7 +20,6 @@ module.exports.registrationUser = async (req, res, next) =>{
 
 module.exports.loginUser = async (req, res, next) =>{
     try{
-        console.log('!!!!!!!!!!LOGINNNN!!!!!!');
         const user = await db.User.findOne({where:{email: req.body.email}});
         if (!user) throw new Error('Ooops');
         await passwordMiddleware.passwordCompare(req.body.password, user.password);
@@ -37,8 +34,6 @@ module.exports.loginUser = async (req, res, next) =>{
         });
     }
     catch (e){
-        console.log('!!!!!');
-        console.log(e.name);
         next(e);
     }
     

@@ -3,8 +3,7 @@ import classNames from 'classnames';
 import styles from './FormInput.module.sass';
 
 const FormInput = (props) => {
-  const {deftext, label, input, type, className,valid,notvalid,container,inputfield, warning, meta: {touched, error}} = props;
-  console.log(props);
+  const {label, input, type, valid,notvalid,container,inputfield, warning, meta: {touched, error}} = props;
 
   return (
       <div className={container}>
