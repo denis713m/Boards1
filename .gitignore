@@ -1,5 +1,5 @@
 */node_modules/
-postgres.session.sql
+!postgres.session.sql
 .idea/
 .vscode/
 backend/node_modules
